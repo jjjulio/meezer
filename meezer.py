@@ -2,6 +2,7 @@ import urllib
 import re
 import requests
 import os
+from time import sleep
 
 def downloadLink(link, path):
     comando = "deemix -p \"" + path + "\" " + link
@@ -83,18 +84,22 @@ class Album(object):
 
     def download(self):
         single = ''
+        timer = 35
         if self.record_type == 'single':
             single = 'Singles/'
+            timer = 10
         path = User.downloadPath + str(self.getArtist().name).upper()[0] + "/" + re.sub(r'[\/:\\\*?\"><\|]', '-', self.getArtist().name) + "/" + single + "[" + self.getYear() + "] " + re.sub(r'[\/:\\\*?\"><\|]', '-', self.title) + "/"
         #path = re.sub(r'[\/:\\\*?\"><\|]', '-', path)
         print(path)
-
         comando = "deemix -p \"" + path + "\" " + self.link
         os.system(comando)
         #+plexScan = "http://morrolion.com:32400/library/sections/2/refresh?path=" + path + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
         #print(plexScan)
         plexScan = "http://morrolion.com:32400/library/sections/2/refresh?path=" + urllib.parse.quote_plus(path) + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
         print(plexScan)
+        os.system("echo " + str(self.id) + " >> downloaded.txt")
+        requests.get(plexScan)
+        sleep(timer)
 
 class Artist(object):
 
