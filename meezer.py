@@ -31,7 +31,7 @@ def loginStep2(self):
 
 class User(object):
     token = "frAXrr0CbmJUvjVg4ViWNIIvJzT1e6uNwkF7zrR8iKpbrmpk3d"
-    downloadPath = "./music2/"
+    downloadPath = "/home/rclone/deezer/"
 
     def getArtists(self):
         url = 'https://api.deezer.com/user/me/artists?access_token=' + self.token
@@ -83,6 +83,13 @@ class Album(object):
         return Artist(result['artist'])
 
     def download(self):
+        try:
+            with open('downloaded.txt') as myfile:
+                if str(album.id) in myfile.read():
+                    print("Album: " + album.title + " already downloaded, skipping...")
+                    return
+        except:
+            pass
         single = ''
         timer = 35
         if self.record_type == 'single':
