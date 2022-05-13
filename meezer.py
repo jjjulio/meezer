@@ -1,8 +1,15 @@
 import urllib
 import re
+import webbrowser
 import requests
 import os
 from time import sleep
+
+token = 'frAXrr0CbmJUvjVg4ViWNIIvJzT1e6uNwkF7zrR8iKpbrmpk3d'
+AppName = 'Meezer'
+secretKey = '3d94fbdd82f4a78a5efc7a9dda4ceac4'
+AppId = '541342'
+
 
 def downloadLink(link, path):
     comando = "deemix -p \"" + path + "\" " + link
@@ -17,7 +24,7 @@ def login(self):
     fullUrl = 'https://connect.deezer.com/oauth/auth.php?app_id=' + AppId + '&redirect_uri=http://deezer.morrolion.com&perms=basic_access,email,offline_access,manage_library,delete_library,listening_history'
     #requests.get(url,params=params)
     webbrowser.open(fullUrl, new=0, autoraise=True)
-    print("Test")
+    print("get code from url opened after login")
 
 def loginStep2(self):
     code = 'fr9cf11dd787c02bc76117dd5fb8a561' #got from login() response
