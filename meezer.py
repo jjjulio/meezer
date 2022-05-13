@@ -85,8 +85,8 @@ class Album(object):
     def download(self):
         try:
             with open('downloaded.txt') as myfile:
-                if str(album.id) in myfile.read():
-                    print("Album: " + album.title + " already downloaded, skipping...")
+                if str(self.id) in myfile.read():
+                    print("Album: " + self.title + " already downloaded, skipping...")
                     return
         except:
             pass
