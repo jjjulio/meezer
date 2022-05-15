@@ -17,6 +17,6 @@ for artist in artists:
 
 albums = user.getAlbums()
 for album in albums:
-    print(album.title)
+    print(album.download())
 
 #test comment
