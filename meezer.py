@@ -90,7 +90,6 @@ class Album(object):
         return Artist(result['artist'])
 
     def download(self):
-        self.getArtist().downloadPicture()
         try:
             with open('downloaded.txt') as myfile:
                 if str(self.id) in myfile.read():
@@ -98,6 +97,7 @@ class Album(object):
                     return
         except:
             pass
+        self.getArtist().downloadPicture()
         single = ''
         timer = 35
         if self.record_type == 'single':
