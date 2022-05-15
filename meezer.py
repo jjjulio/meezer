@@ -145,5 +145,9 @@ class Artist(object):
         path = User.downloadPath + str(self.name).upper()[0] + "/" + re.sub(r'[\/:\\\*?\"><\|]', '-',self.name) + "/"
         os.system("mkdir -p \"" + path + "\"")
         file = path + "Picture.jpg"
+        if os.path.exists(file):
+            print("---------> Picture for " + self.name + "Already downloaded")
+            return
+        print("-----------> Downloading Picture for " + self.name)
         os.system("touch \"" + file + "\"")
         urllib.request.urlretrieve(self.picture, file)
