@@ -147,8 +147,8 @@ class Artist(object):
         os.system("mkdir -p \"" + path + "\"")
         file = path + "Picture.jpg"
         if os.path.exists(file):
-            print("---------> Picture for " + self.name + "Already downloaded")
+            #print("---------> Picture for " + self.name + "Already downloaded")
             return
-        print("-----------> Downloading Picture for " + self.name)
+        #print("-----------> Downloading Picture for " + self.name)
         os.system("touch \"" + file + "\"")
         urllib.request.urlretrieve(self.picture, file)
