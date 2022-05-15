@@ -90,7 +90,7 @@ class Album(object):
         return Artist(result['artist'])
 
     def download(self):
-        self.artist.downloadPicture()
+        self.getArtist().downloadPicture()
         try:
             with open('downloaded.txt') as myfile:
                 if str(self.id) in myfile.read():
