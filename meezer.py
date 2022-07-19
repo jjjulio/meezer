@@ -112,7 +112,17 @@ class Album(object):
         #os.system(comando)
         log = os.popen(comando).read()
         print(log)
-        if "not found at desired bitrate" in log:
+
+        brate = 8
+
+        while "not found at desired bitrate" in log:
+            comando = "deemix -b " + str(brate) + " -p \"" + path + "\" " + self.link
+            log = os.popen(comando).read()
+            brate -= 1
+            print(comando)
+
+        print("Downloaded with: " + comando)
+        """if "not found at desired bitrate" in log:
             comando = "deemix -b 8 -p \"" + path + "\" " + self.link
             log = os.popen(comando).read()
             print(log)
@@ -143,7 +153,7 @@ class Album(object):
                                     if "not found at desired bitrate" in log:
                                         comando = "deemix -b 1 -p \"" + path + "\" " + self.link
                                         log = os.popen(comando).read()
-                                        print(log)
+                                        print(log)"""
         #plexScan = "http://morrolion.com:32400/library/sections/2/refresh?path=" + path + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
         #print(plexScan)
         plexScan = "https://192-18-142-62.70bd9ac990e945959c764adc16376942.plex.direct:32400/library/sections/4/refresh?path=" + urllib.parse.quote_plus(path) + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
