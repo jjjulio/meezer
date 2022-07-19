@@ -62,7 +62,7 @@ class User(object):
 class Album(object):
 
     def __init__(self, data):
-        print(data)
+        #print(data)
         self.id = str(data['id'])
         self.title = data['title']
         self.link = data['link']
@@ -109,7 +109,21 @@ class Album(object):
         #path = re.sub(r'[\/:\\\*?\"><\|]', '-', path)
         print(path)
         comando = "deemix -p \"" + path + "\" " + self.link
-        os.system(comando)
+        #os.system(comando)
+        log = os.popen(comando).read()
+        print(log)
+        if "not found at desired bitrate" in log:
+            comando = "deemix -b 8 -p \"" + path + "\" " + self.link
+            log = os.popen(comando).read()
+            print(log)
+            if "not found at desired bitrate" in log:
+                comando = "deemix -b 7 -p \"" + path + "\" " + self.link
+                log = os.popen(comando).read()
+                print(log)
+                if "not found at desired bitrate" in log:
+                    comando = "deemix -b 6 -p \"" + path + "\" " + self.link
+                    log = os.popen(comando).read()
+                    print(log)
         #plexScan = "http://morrolion.com:32400/library/sections/2/refresh?path=" + path + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
         #print(plexScan)
         plexScan = "https://192-18-142-62.70bd9ac990e945959c764adc16376942.plex.direct:32400/library/sections/4/refresh?path=" + urllib.parse.quote_plus(path) + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
