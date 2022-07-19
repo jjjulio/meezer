@@ -124,6 +124,26 @@ class Album(object):
                     comando = "deemix -b 6 -p \"" + path + "\" " + self.link
                     log = os.popen(comando).read()
                     print(log)
+                    if "not found at desired bitrate" in log:
+                        comando = "deemix -b 5 -p \"" + path + "\" " + self.link
+                        log = os.popen(comando).read()
+                        print(log)
+                        if "not found at desired bitrate" in log:
+                            comando = "deemix -b 4 -p \"" + path + "\" " + self.link
+                            log = os.popen(comando).read()
+                            print(log)
+                            if "not found at desired bitrate" in log:
+                                comando = "deemix -b 3 -p \"" + path + "\" " + self.link
+                                log = os.popen(comando).read()
+                                print(log)
+                                if "not found at desired bitrate" in log:
+                                    comando = "deemix -b 2 -p \"" + path + "\" " + self.link
+                                    log = os.popen(comando).read()
+                                    print(log)
+                                    if "not found at desired bitrate" in log:
+                                        comando = "deemix -b 1 -p \"" + path + "\" " + self.link
+                                        log = os.popen(comando).read()
+                                        print(log)
         #plexScan = "http://morrolion.com:32400/library/sections/2/refresh?path=" + path + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
         #print(plexScan)
         plexScan = "https://192-18-142-62.70bd9ac990e945959c764adc16376942.plex.direct:32400/library/sections/4/refresh?path=" + urllib.parse.quote_plus(path) + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
