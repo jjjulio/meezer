@@ -104,7 +104,7 @@ class Album(object):
         if self.record_type == 'single':
             single = 'Singles/'
             timer = 10
-        path = User.downloadPath + str(self.getArtist().name).upper()[0] + "/" + re.sub(r'[\/:\\\*?\"><\|]', '-', self.getArtist().name) + "/" + single + "[" + self.getYear() + "] " + re.sub(r'[\/:\\\*?\"><\|]', '-', self.title) + "/"
+        path = User.downloadPath + str(self.getArtist().name).upper()[0] + "/" + re.sub(r'[\/:\\\*?\"><\|]', '-', self.getArtist().name) + "/" + single + "[" + self.getYear() + "] [D] " + re.sub(r'[\/:\\\*?\"><\|]', '-', self.title) + "/"
         #path = re.sub(r'[\/:\\\*?\"><\|]', '-', path)
         print(path)
         comando = "deemix -p \"" + path + "\" " + self.link
