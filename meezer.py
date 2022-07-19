@@ -39,7 +39,7 @@ def loginStep2(self):
 
 class User(object):
     token = "frAXrr0CbmJUvjVg4ViWNIIvJzT1e6uNwkF7zrR8iKpbrmpk3d"
-    downloadPath = "/home/rclone/deezer/"
+    downloadPath = "/home/rclone/plex.music/"
 
     def getArtists(self):
         url = 'https://api.deezer.com/user/me/artists?access_token=' + self.token
@@ -109,13 +109,13 @@ class Album(object):
         print(path)
         comando = "deemix -p \"" + path + "\" " + self.link
         os.system(comando)
-        #+plexScan = "http://morrolion.com:32400/library/sections/2/refresh?path=" + path + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
+        #plexScan = "http://morrolion.com:32400/library/sections/2/refresh?path=" + path + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
         #print(plexScan)
-        plexScan = "http://morrolion.com:32400/library/sections/2/refresh?path=" + urllib.parse.quote_plus(path) + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
+        plexScan = "https://192-18-142-62.70bd9ac990e945959c764adc16376942.plex.direct:32400/library/sections/4/refresh?path=" + urllib.parse.quote_plus(path) + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
         print(plexScan)
         os.system("echo " + str(self.id) + " >> downloaded.txt")
         requests.get(plexScan)
-        sleep(timer)
+        sleep(2)
 
 class Artist(object):
 
