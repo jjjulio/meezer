@@ -62,6 +62,7 @@ class User(object):
 class Album(object):
 
     def __init__(self, data):
+        print(data)
         self.id = str(data['id'])
         self.title = data['title']
         self.link = data['link']
