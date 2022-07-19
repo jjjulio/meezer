@@ -152,5 +152,6 @@ class Artist(object):
             return
         #print("-----------> Downloading Picture for " + self.name)
         #os.system("touch \"" + file + "\"")
+        print(file)
         touch.touch(file)
         urllib.request.urlretrieve(self.picture, file)
