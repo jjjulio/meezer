@@ -4,6 +4,7 @@ import webbrowser
 import requests
 import os
 from time import sleep
+import touch
 
 token = 'frAXrr0CbmJUvjVg4ViWNIIvJzT1e6uNwkF7zrR8iKpbrmpk3d'
 AppName = 'Meezer'
@@ -150,5 +151,6 @@ class Artist(object):
             #print("---------> Picture for " + self.name + "Already downloaded")
             return
         #print("-----------> Downloading Picture for " + self.name)
-        os.system("touch \"" + file + "\"")
+        #os.system("touch \"" + file + "\"")
+        touch.touch(file)
         urllib.request.urlretrieve(self.picture, file)

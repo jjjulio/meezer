@@ -10,6 +10,8 @@ import meezer
 user = meezer.User()
 artists = user.getArtists()
 for artist in artists:
+    print(artist.name)
+"""for artist in artists:
     artist.downloadPicture()
     albums = artist.getAlbums()
     for album in albums:
@@ -17,6 +19,10 @@ for artist in artists:
 
 albums = user.getAlbums()
 for album in albums:
-    print(album.download())
+    print(album.download())"""
 
+albums = user.getAlbums()
+for album in albums:
+    print(album.title)
+    album.download()
 #test comment
